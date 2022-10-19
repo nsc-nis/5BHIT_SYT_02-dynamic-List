@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h3>Example</h3>
-    <form>
+    <form @submit.prevent="addNewSubject">
       <label>Enter new subject:</label>
       <input v-model="newSubject" />
       <button>Add subject</button>
@@ -15,9 +15,14 @@ export default {
   setup() {
     const newSubject = ref("");
 
+    function addNewSubject()
+    {
+      console.log("addNewSubject");
+    }
+
     // expose the state to the template
     return {
-      newSubject,
+      newSubject, addNewSubject
     };
   },
 };
