@@ -6,6 +6,12 @@
       <input v-model="newSubject" />
       <button>Add subject</button>
     </form>
+    <hr />
+    <ul>
+      <li v-for="item in subjects">
+        {{ item.content }}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -14,17 +20,24 @@ import { ref } from "vue";
 export default {
   setup() {
     const newSubject = ref("");
+    const subjects = ref([]);
 
-    function addNewSubject()
-    {
-      console.log("addNewSubject");
+    function addNewSubject() {
+      //console.log("addNewSubject" + newSubject.value);
+      subjects.value.push({
+        content: newSubject.value
+      });
+      newSubject.value = " ";
+      console.log(subjects.value);
     }
 
     // expose the state to the template
     return {
-      newSubject, addNewSubject
+      newSubject,
+      addNewSubject,
+      subjects
     };
-  },
+  }
 };
 </script>
 
@@ -39,6 +52,11 @@ export default {
 }
 
 h3 {
+  margin-bottom: 20px;
+}
+
+hr {
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 </style>
