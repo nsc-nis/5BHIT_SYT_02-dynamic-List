@@ -8,8 +8,9 @@
     </form>
     <hr />
     <ul>
-      <li v-for="item in subjects">
+      <li v-for="(item, index) in subjects" :key="index">
         {{ item.content }}
+        <button @click="deleteSubject(index)">Delete</button>
       </li>
     </ul>
   </div>
@@ -31,11 +32,17 @@ export default {
       console.log(subjects.value);
     }
 
+    function deleteSubject(index) {
+      console.log("Delete....");
+      subjects.value.splice(index, 1);
+    }
+
     // expose the state to the template
     return {
       newSubject,
       addNewSubject,
-      subjects
+      subjects,
+      deleteSubject
     };
   }
 };
